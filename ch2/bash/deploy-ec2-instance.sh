@@ -2,7 +2,7 @@
 
 set -e
 
-export AWS_DEFAULT_REGION="us-east-2"
+export AWS_DEFAULT_REGION="ap-southeast-2"
 user_data=$(cat user-data.sh)
 
 security_group_id=$(aws ec2 create-security-group \

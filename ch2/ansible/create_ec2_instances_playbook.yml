@@ -2,7 +2,7 @@
   hosts: localhost                                      
   gather_facts: no
   environment:
-    AWS_REGION: us-east-2
+    AWS_REGION: ap-southeast-2
   vars:                                                 
     num_instances: 1
     base_name: sample_app_ansible
