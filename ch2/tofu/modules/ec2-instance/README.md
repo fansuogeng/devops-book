@@ -1,7 +1,7 @@
 # EC2 Instance OpenTofu Module
 
-This folder contains a reusable OpenTofu module that deploys an EC2 instance which runs a Node.js "Hello, World" sample 
-app that listens on port 8080.
+This folder contains a root OpenTofu module that deploys an EC2 instance which runs a Node.js "Hello, World" sample app 
+that listens on port 8080.
 
 For more information, see Chapter 2, "How to Manage Your Infrastructure as Code", of [_Fundamentals of DevOps and
 Software Delivery_](https://www.fundamentals-of-devops.com) by Yevgeniy Brikman.

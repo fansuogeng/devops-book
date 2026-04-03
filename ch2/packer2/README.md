@@ -1,7 +1,9 @@
-# EC2 Instance OpenTofu Module
+# Node.js Sample App Packer Template
 
-This folder contains a root OpenTofu module that deploys an EC2 instance which runs a Node.js "Hello, World" sample app 
-that listens on port 8080.
+This folder contains:
+
+* `app.js`: A Node.js "Hello, World" sample app that listens on port 8080.
+* `sample-app.pkr.hcl`: A Packer template that can create an AMI that has the Node.js sample app installed.
 
 For more information, see Chapter 2, "How to Manage Your Infrastructure as Code", of [_Fundamentals of DevOps and
 Software Delivery_](https://www.fundamentals-of-devops.com) by Yevgeniy Brikman.

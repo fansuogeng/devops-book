@@ -1,3 +1,0 @@
-{"sessionId": "c66563", "runId": "pre-fix", "hypothesisId": "H0", "location": "sample-app.pkr.hcl:build.pre_shell", "message": "Entering remote shell provisioner", "data": {"source_ami": "ami-0b7897aebfb5130b9", "region": "ap-southeast-2"}, "timestamp": 1775179252935}
-{"sessionId": "c66563", "runId": "pre-fix", "hypothesisId": "H3", "location": "sample-app.pkr.hcl:build.post_shell", "message": "Remote shell provisioner completed and control returned", "data": {"provisioner": "install-node.sh"}, "timestamp": 1775179354910}
-{"sessionId": "c66563", "runId": "pre-fix", "hypothesisId": "H4", "location": "sample-app.pkr.hcl:build.post_file_upload", "message": "File upload provisioner completed", "data": {"file": "app.js"}, "timestamp": 1775179355417}

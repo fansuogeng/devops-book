@@ -7,11 +7,6 @@ packer {
   }
 }
 
-variable "ssh_ingress_cidr" {
-  type        = string
-  description = "CIDR allowed to SSH into temporary Packer build instance (for example, 203.0.113.10/32)."
-}
-
 data "amazon-ami" "amazon-linux" {                    
   filters = {
     name = "al2023-ami-2023.*-x86_64"
@@ -28,19 +23,28 @@ source "amazon-ebs" "amazon-linux" {
   region          = "ap-southeast-2"
   source_ami      = data.amazon-ami.amazon-linux.id
   ssh_username    = "ec2-user"
-  temporary_security_group_source_cidrs = [var.ssh_ingress_cidr]
+  ssh_timeout     = "10m"
+  ssh_keep_alive_interval = "5s"
+
+  # Prevent cloud-init from running background dnf updates that compete
+  # for locks and restart sshd (killing Packer's SSH session).
+  user_data = <<EOF
+#cloud-config
+package_update: false
+package_upgrade: false
+EOF
 }
 
 build {                                               
   sources = ["source.amazon-ebs.amazon-linux"]
 
-  provisioner "file" {                                
-    source      = "app.js"
-    destination = "/home/ec2-user/app.js"
+  provisioner "shell" {
+    script            = "install-node.sh"
+    expect_disconnect = true
   }
 
-  provisioner "shell" {                               
-    script       = "install-node.sh"
-    pause_before = "30s"
+  provisioner "file" {
+    source      = "app.js"
+    destination = "/home/ec2-user/app.js"
   }
 }
