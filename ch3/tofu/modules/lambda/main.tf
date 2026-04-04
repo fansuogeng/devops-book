@@ -61,3 +61,24 @@ resource "aws_lambda_function_url" "url" {
   function_name      = aws_lambda_function.function.function_name
   authorization_type = "NONE"
 }
+
+# NONE auth: AWS requires both InvokeFunctionUrl and InvokeFunction (via URL only).
+resource "aws_lambda_permission" "function_url_public" {
+  count = var.create_url ? 1 : 0
+
+  statement_id           = "${var.name}-function-url-public"
+  action                 = "lambda:InvokeFunctionUrl"
+  function_name          = aws_lambda_function.function.function_name
+  principal              = "*"
+  function_url_auth_type = "NONE"
+}
+
+resource "aws_lambda_permission" "function_url_invoke" {
+  count = var.create_url ? 1 : 0
+
+  statement_id             = "${var.name}-function-url-invoke"
+  action                   = "lambda:InvokeFunction"
+  function_name            = aws_lambda_function.function.function_name
+  principal                = "*"
+  invoked_via_function_url = true
+}

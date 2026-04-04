@@ -1,10 +1,9 @@
 provider "aws" {
-  region = "us-east-2"
+  region = "ap-southeast-2"
 }
 
 module "function" {
-  source  = "brikis98/devops/book//modules/lambda"
-  version = "1.0.0"
+  source = "../../modules/lambda"
 
   name        = "lambda-sample"      
   src_dir     = "${path.module}/src" 
