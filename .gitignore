@@ -5,3 +5,5 @@
 *.DS_Store
 *.pdf
 *.key
+*.zip
+node_modules
